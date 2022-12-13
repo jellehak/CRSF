@@ -84,6 +84,7 @@ public:
     void readPacket();
 
     void begin(HardwareSerial *port, unsigned long baud = 420000);
+    void begin(HardwareSerial *port, int8_t timerid, int8_t rxPin, int8_t txPin, unsigned long baud = 115200);
     uint16_t getChannel(uint8_t channel) const;
     bool isConnected();
 

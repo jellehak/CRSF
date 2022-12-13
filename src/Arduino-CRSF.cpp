@@ -23,6 +23,22 @@ void CRSF::begin(HardwareSerial *port, unsigned long baud)
     memcpy(m_channels, loc_channels, CRSF_MAX_CHANNEL);
 }
 
+void CRSF::begin(HardwareSerial *port, int8_t timerid, int8_t rxPin, int8_t txPin, unsigned long baud) {
+    
+    m_port = port;
+    uint8_t loc_crsfData[CRSF_PACKET_SIZE] = {0x00};
+    int16_t loc_channels[16] = {1023};
+    #ifdef ARDUINO_ARCH_ESP32
+        m_port->begin(baud, SERIAL_8N1, rxPin, txPin);
+    #else
+        m_port->begin(115200, SERIAL_8N1);
+    #endif
+
+    // initial data;
+    memcpy(m_crsfData, loc_crsfData, CRSF_PACKET_SIZE);
+    memcpy(m_channels, loc_channels, CRSF_MAX_CHANNEL);
+}
+
 void CRSF::readPacket()
 {
     uint8_t inData, frameLength, bufferIndex = 0;
