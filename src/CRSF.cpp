@@ -1,4 +1,4 @@
-#include "Arduino-CRSF.h"
+#include "CRSF.h"
 
 CRSF::CRSF()
 {

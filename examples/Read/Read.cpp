@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <Arduino-CRSF.h>
+#include <CRSF.h>
 
 CRSF crsf;
 
